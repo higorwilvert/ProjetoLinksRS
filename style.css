@@ -6,26 +6,28 @@
 
 :root {
   --text-color: white;
-  --background-url: url(./assets/bg-mobile.jpg);
+  --background: #0a0b0f;
   --stroke-color: rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.05);
-  --surface-color-houver: rgba(0, 0, 0, 0.02);
   --highlight-color: rgba(255, 255, 255, 0.1);
   --switch-background-url: url(./assets/moon-stars.svg);
+  --bg-list: #1e232d;
+  --color-gradient: linear-gradient(45deg, #d4145a, #ff4b2b);
 }
 
 .light {
   --text-color: black;
-  --background-url: url(./assets/bg-mobile-light.jpg);
+  --background: #dfe0e1;
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
-  --surface-color-houver: rgba(0, 0, 0, 0.02);
   --highlight-color: rgba(0, 0, 0, 0.1);
   --switch-background-url: url(./assets/sun-stars.svg);
+  --bg-list: #cdced0;
+  --color-gradient: linear-gradient(45deg, #0ebeff, #ff42b3);
 }
 
 body {
-  background: var(--background-url) no-repeat top center/cover;
+  background: var(--background) no-repeat top center/cover;
   height: 100vh;
 }
 
@@ -109,28 +111,52 @@ ul {
 }
 
 ul li a {
+  position: relative;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
 
   padding: 16px 24px;
 
-  background: var(--surface-color);
-  border: 1px solid var(--stroke-color);
+  background: var(--color-gradient);
   border-radius: 8px;
-
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 
   text-decoration: none;
   font-weight: 500;
-
-  transition: background 0.2s;
 }
 
-ul li a:hover {
-  background: var(--surface-color-houver);
-  border: 1.5px solid var(--text-color);
+a span {
+  position: relative;
+  z-index: 1;
+}
+
+ul li a:before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-list);
+  border-radius: 7px;
+  transition: 0.5s;
+}
+
+ul li a:hover:before {
+  opacity: 0.7;
+}
+
+ul li a:after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: var(--color-gradient);
+  border-radius: 7px;
+  transition: 0.5s;
+  opacity: 0;
+  filter: blur(20px);
+}
+
+ul li a:hover:after {
+  opacity: 1;
 }
 
 #social-links {
